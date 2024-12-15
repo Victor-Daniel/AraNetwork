@@ -1,0 +1,16 @@
+{
+    "name": "victor/ara-network",
+    "description": "Rede Social",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Victor-Daniel",
+            "email": "victordanielgts@outlook.com"
+        }
+    ],
+    "require": {}
+}
