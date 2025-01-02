@@ -10,6 +10,7 @@ $dotenv->load();
 //Solicita a Rota disponível
 $Route = RequestLogin::Available_Routes();
 $Content = ResponseLogin::Get_Content($Route);
+print_r($Content);
 
 //echo "<pre>";
 //echo RequestLogin::Available_Routes();
