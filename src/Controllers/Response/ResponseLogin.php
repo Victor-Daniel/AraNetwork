@@ -20,8 +20,9 @@ class ResponseLogin{
              return $Content;
         }
         else{
+            $Content = $reader->Reader("/erro-page404");
             http_response_code(404);
-            return "";
+            return $Content;
         }
         
     }
