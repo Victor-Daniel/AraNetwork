@@ -21,7 +21,12 @@ class ResponseLogin{
         else{
             if( $checker->FileVerify($Route)){
                 $Content = $reader->Reader($Route);
-                $Content = $Render->Render($Content,["CSSFILEPC"=>$_ENV["ENDERECO_LOCAL"].$_ENV["CSSLINK"].$Route.".css"]);
+                $Content = $Render->Render($Content,["CSSFILEPCLOCAL"=>$_ENV["ENDERECO_LOCAL"].$_ENV["CSSLINK"].$Route.".css"]);
+                $Content = $Render->Render($Content,["CSSFILEMOBILELOCAL"=>$_ENV["ENDERECO_LOCAL"].$_ENV["CSSLINK"].$Route."-mobile.css"]);
+                $Content = $Render->Render($Content,["CSSFILEPCLOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINK"].$Route.".css"]);
+                $Content = $Render->Render($Content,["CSSFILEMOBILELOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINK"].$Route."-mobile.css"]);
+                $Content = $Render->Render($Content,["CSSFILEURL"=>$_ENV["ENDERECO_URL"].$_ENV["CSSLINK"].$Route.".css"]);
+                $Content = $Render->Render($Content,["CSSFILEMOBILEURL"=>$_ENV["ENDERECO_URL"].$_ENV["CSSLINK"].$Route."-mobile.css"]);
                 http_response_code(200);
                 return $Content;
            }

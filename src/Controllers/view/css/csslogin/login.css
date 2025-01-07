@@ -11,6 +11,8 @@ p{
 }
 
 @media (min-width: 1199px) {
+
+    /*Configurando Login para Notebook e PC*/
     section.view-body{
         width: 100%;
         height: 100%;
