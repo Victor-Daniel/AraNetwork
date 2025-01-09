@@ -30,4 +30,42 @@
         align-items: center;
     }
 
+    .form-login{
+        margin-top: 1.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .input-group{
+        margin-top: 20px;
+        position: relative;
+    }
+    .input-group > input{
+        width: 15rem;
+       height: 1.5rem;
+       font-size: 14px;
+       background: transparent;
+       border: 1.2px solid #2F4F4F;
+       outline: none;
+       border-radius: 10px;
+
+
+    }
+    .input-group > label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #2F4F4F;
+        padding: 0 5px;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .input-group > input:focus~label,.input-group > input:valid~label{
+        top:-8px;
+        font-size: 10px;
+        
+    }
 }
