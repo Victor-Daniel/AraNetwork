@@ -9,14 +9,16 @@
     }
 
     div.login-form{
-        width: 90% !important;
-        height: 70% !important;
+        width: 100% !important;
+        height: 100% !important;
         background-color: #f0f0f0;
         border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin: 0;
+        padding: 0;
     }
 
     div.space{
@@ -78,26 +80,26 @@
 @media (max-width: 1000px) {
 
     div.logo{
-        width: 25rem!important;
-        height: 25rem !important;
+        width: 13rem!important;
+        height: 13rem !important;
         
     }
     .input-group>input{
-        width: 25rem;
-        height: 2.5rem;
+        width: 13rem;
+        height: 1.5rem;
         font-size: 16px;
     }
 
     .input-group > label{
-        font-size: 25pt;
+        font-size: 14pt;
     }
     .input-group{
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         position: relative;
     }
     .input-group > input:focus~label,.input-group > input:valid~label{
-        top:-15px;
-        font-size: 18pt;
+        top:-8px;
+        font-size: 12pt;
         
     }
 
