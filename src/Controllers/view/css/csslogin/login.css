@@ -19,15 +19,109 @@ p{
         display:flex;
         justify-content: center;
         align-items: center;
-        
+        background-color: #f0f0f0;
     }
     
     div.login-form{
-        width: 60% !important;
-        height: 60% !important;
-        background-color: #f0f0f0;
+        width: 60%;
+        height: 65%;
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-    }    
+    } 
+
+    div.logo{
+        background-color: #2F4F4F !important;
+        width: 15rem;
+        height: 15rem;
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-login{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .input-group{
+        margin-top: 20px;
+        position: relative;
+    }
+    .input-group > input{
+        width: 16rem;
+        height: 1.8rem;
+        font-size: 14px;
+        background: transparent;
+        border: 1.2px solid #2F4F4F;
+        outline: none;
+        border-radius: 10px;
+
+
+    }
+    .input-group > label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 13pt;
+        color: #2F4F4F;
+        padding: 0 5px;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .input-group > input:focus~label,.input-group > input:valid~label{
+        top:-8px;
+        font-size: 11pt;  
+    }
+
+    div.opcoes{
+        width: 16rem;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    div.opcoes > ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 16rem;
+    }
+
+    div.opcoes > ul>li{
+        margin-bottom: 0.5rem;
+        
+    }
+
+    div.opcoes > ul>li>a{
+        text-decoration: none;
+        color: #2F4F4F;
+        font-size: 11pt;
+    }
+
+    button.btn-entrar{
+        width: 13rem;
+        height: 2.5rem;
+        font-size: 15pt;
+        background-color: #2F4F4F;
+        color: white;
+        border: none;
+        border-radius: 10px;
+    }
+    button.btn-entrar:active{
+        color: #2F4F4F;
+        background-color: white;
+        border: 1px solid #2F4F4F;
+    }
+    button.btn-entrar:hover{
+        cursor: pointer;
+    }
+       
 }

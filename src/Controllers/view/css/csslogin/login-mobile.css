@@ -12,24 +12,17 @@
         width: 100% !important;
         height: 100% !important;
         background-color: #f0f0f0;
-        border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin: 0;
-        padding: 0;
     }
 
-    div.space{
-        width: 60%;
-        height: 30%;
-    }
 
     div.logo{
         background-color: #2F4F4F !important;
-        width: 8rem;
-        height: 8rem;
+        width: 12rem;
+        height: 12rem;
         border-radius: 10px;
         color: white;
         display: flex;
@@ -38,7 +31,6 @@
     }
 
     .form-login{
-        margin-top: 1.5rem;
         padding-top: 20px;
         padding-bottom: 20px;
     }
@@ -48,8 +40,8 @@
         position: relative;
     }
     .input-group > input{
-        width: 15rem;
-        height: 1.5rem;
+        width: 16rem;
+        height: 1.8rem;
         font-size: 14px;
         background: transparent;
         border: 1.2px solid #2F4F4F;
@@ -63,7 +55,7 @@
         top: 50%;
         left: 5px;
         transform: translateY(-50%);
-        font-size: 14px;
+        font-size: 13pt;
         color: #2F4F4F;
         padding: 0 5px;
         pointer-events: none;
@@ -72,8 +64,47 @@
 
     .input-group > input:focus~label,.input-group > input:valid~label{
         top:-8px;
-        font-size: 10px;
-        
+        font-size: 11pt;   
+    }
+
+    div.opcoes{
+        width: 16rem;
+        display: flex;
+        justify-content: start;
+    }
+
+    div.opcoes > ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    div.opcoes > ul>li{
+        margin-bottom: 0.5rem;
+    }
+
+    div.opcoes > ul>li>a{
+        text-decoration: none;
+        color: #2F4F4F;
+        font-size: 11pt;
+    }
+
+    button.btn-entrar{
+        width: 13rem;
+        height: 2.5rem;
+        font-size: 12pt;
+        margin-top: 1.5rem;
+        background-color: #2F4F4F;
+        color: white;
+        border: none;
+    }
+    button.btn-entrar:active{
+        color: #2F4F4F;
+        background-color: white;
+        border: 1px solid #2F4F4F;
+    }
+    button.btn-entrar:hover{
+        cursor: pointer;
     }
 }
 
@@ -85,13 +116,13 @@
         
     }
     .input-group>input{
-        width: 13rem;
+        width: 15rem;
         height: 1.5rem;
         font-size: 16px;
     }
 
     .input-group > label{
-        font-size: 14pt;
+        font-size: 13pt;
     }
     .input-group{
         margin-top: 1.5rem;
@@ -99,8 +130,48 @@
     }
     .input-group > input:focus~label,.input-group > input:valid~label{
         top:-8px;
-        font-size: 12pt;
+        font-size: 11pt;
         
     }
 
+    div.opcoes{
+        width: 15rem;
+        display: flex;
+        justify-content: start;
+    }
+
+    div.opcoes > ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    div.opcoes > ul>li{
+        margin-bottom: 0.5rem;
+    }
+
+    div.opcoes > ul>li>a{
+        text-decoration: none;
+        color: #2F4F4F;
+        font-size: 9pt;
+    }
+
+    button.btn-entrar{
+        width: 13rem;
+        height: 2.5rem;
+        font-size: 12pt;
+        margin-top: 1.5rem;
+        background-color: #2F4F4F;
+        color: white;
+        border: none;
+    }
+    button.btn-entrar:active{
+        color: #2F4F4F;
+        background-color: white;
+        border: 1px solid #2F4F4F;
+    }
+
+    button.btn-entrar:hover{
+        cursor: pointer;
+    }
 }
