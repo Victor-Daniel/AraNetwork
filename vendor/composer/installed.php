@@ -3,7 +3,7 @@
         'name' => 'victor/ara-network',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7349c0b7420934b1aa5da800e72f317219a1d2b7',
+        'reference' => '23d83bec4a6002caa2ef5bf53d3f0497743e4a81',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -58,7 +58,7 @@
         'victor/ara-network' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7349c0b7420934b1aa5da800e72f317219a1d2b7',
+            'reference' => '23d83bec4a6002caa2ef5bf53d3f0497743e4a81',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

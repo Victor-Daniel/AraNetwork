@@ -27,6 +27,7 @@ class ResponseLogin{
                 $Content = $Render->Render($Content,["CSSFILEMOBILELOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINK"].$Route."-mobile.css"]);
                 $Content = $Render->Render($Content,["CSSFILEURL"=>$_ENV["ENDERECO_URL"].$_ENV["CSSLINK"].$Route.".css"]);
                 $Content = $Render->Render($Content,["CSSFILEMOBILEURL"=>$_ENV["ENDERECO_URL"].$_ENV["CSSLINK"].$Route."-mobile.css"]);
+                $Content = $Render->Render($Content,["PAGE_CADASTRO"=>$_ENV["ENDERECO_IP"]."/AraNetwork/cadastro"]);
                 http_response_code(200);
                 return $Content;
            }
