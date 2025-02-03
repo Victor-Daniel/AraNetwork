@@ -10,7 +10,8 @@ class RequestLogin{
     public static function Available_Routes(){
         $routes = array(
             "/"=>"/login",
-            "/login"=>"/login"
+            "/login"=>"/login",
+            'login'=>"/login"
         );
 
         $route = new RouteProcessor();

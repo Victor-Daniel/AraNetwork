@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'victor/ara-network',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '23d83bec4a6002caa2ef5bf53d3f0497743e4a81',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -56,9 +56,9 @@
             'dev_requirement' => false,
         ),
         'victor/ara-network' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '23d83bec4a6002caa2ef5bf53d3f0497743e4a81',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
