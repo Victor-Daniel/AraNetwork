@@ -7,12 +7,12 @@ use App\Utilities\RouteProcessor;
 
 class RequestCadastro{
     //Retornando a Rota de Cadastro Ou de Error
-    public function Available_Routes(){
+    public static function Available_Routes(){
         $routes = array(
             "cadastro"=>"/cadastro",
             "/cadastro"=>"/cadastro"
         );
-
+        //Iniciando o processador de Rotas
         $route = new RouteProcessor();
         $current_route = $route->Get_URI_Cadastro();
         if(array_key_exists($current_route, $routes)){
