@@ -8,7 +8,12 @@ html,body{
 }
 
 .Content-Cadastro{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
+}
+
+.title-cadastro{
+    text-align: center;
 }
