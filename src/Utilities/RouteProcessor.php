@@ -4,7 +4,7 @@ namespace App\Utilities;
 // Classe responsável por tratar a URL e trazer a URI Atual
 class RouteProcessor{
 
-    //Retornando a URI
+    //Retornando a URI LOGIN
     public static function Get_URI_Login(){
         $URI = $_SERVER['REQUEST_URI'];
         $Current_URI = str_replace(getenv('Prefix_URI'),"",$URI);
@@ -24,6 +24,7 @@ class RouteProcessor{
         return $Current_URI;
     }
 
+    //TRATANDO E RETORNANDO  URI CADASTRO
     public function Get_URI_Cadastro(){
 
         $URI = $_SERVER['REQUEST_URI'];

@@ -13,4 +13,6 @@ $dotenv->load();
 $Route = RequestCadastro::Available_Routes();
 echo ResponseCadastro::Get_Content($Route);
 
+// FALTA TRATAR O RETORNO "/server-error";
+
 ?>
