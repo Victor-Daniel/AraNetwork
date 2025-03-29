@@ -25,10 +25,19 @@ html,body{
     }
 
     .Campos-Form{
-        width: 80%;
+        width: 90%;
         display: flex;
     }
 
+    .Campos-Form > div+div{
+        margin-right: 2rem;
+    }
+    .Campos-Form > div{
+        margin-right: 2rem;
+    }
+    .Campos-Form :first-child{
+        margin-left: 2rem;
+    }
     .input-group{
         margin-top: 1rem;
     }
@@ -51,7 +60,7 @@ html,body{
     .input-group > label{
         position: absolute;
         top: 50%;
-        left: 5px;
+        left: 2rem;
         transform: translateY(-50%);
         font-size: 13pt;
         color: #2F4F4F;
