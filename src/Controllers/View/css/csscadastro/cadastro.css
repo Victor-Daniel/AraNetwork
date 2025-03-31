@@ -24,19 +24,18 @@ html,body{
         text-align: center;
     }
 
-    .Campos-Form{
-        width: 90%;
-        display: flex;
+    .Campos-Cadastro{
+        text-align: center;
     }
 
-    .Campos-Form > div+div{
-        margin-right: 2rem;
+    .Campos-Form{
+        width: 60vw;
+        display: flex;
+        justify-content: center;
     }
-    .Campos-Form > div{
-        margin-right: 2rem;
-    }
-    .Campos-Form :first-child{
-        margin-left: 2rem;
+
+    .separador{
+        text-align: center;
     }
     .input-group{
         margin-top: 1rem;
@@ -45,6 +44,9 @@ html,body{
     .input-group{
         margin-top: 20px;
         position: relative;
+    }
+    .separador-part1{
+        margin-right: 0.5rem;
     }
     .input-group > input{
         width: 16rem;
@@ -60,7 +62,7 @@ html,body{
     .input-group > label{
         position: absolute;
         top: 50%;
-        left: 2rem;
+        left: 1rem;
         transform: translateY(-50%);
         font-size: 13pt;
         color: #2F4F4F;
