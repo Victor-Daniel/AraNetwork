@@ -22,10 +22,25 @@ html,body{
 
     .title-cadastro{
         text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .title-cadastro > h2{
+        font-size: 2rem;
+        color: #2F4F4F;
     }
 
     .Campos-Cadastro{
         text-align: center;
+    }
+
+    .Pfisica{
+        margin-right: 1rem;
+    }
+
+    .tipo-cadastro{
+        display: flex;
+        justify-content: center;
     }
 
     .Campos-Form{
