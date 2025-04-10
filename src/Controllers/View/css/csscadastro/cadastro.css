@@ -11,7 +11,7 @@ html,body{
 }
 
 
-@media (min-width: 1199px) {
+@media (min-width: 1000px) {
     .Content-Cadastro{
         width: 100vw;
         height: 100vh;
