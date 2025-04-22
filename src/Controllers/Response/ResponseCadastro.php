@@ -25,6 +25,7 @@ class ResponseCadastro{
                 $Content = $Render->Render($Content,["CSSFILEPCLOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINKCADASTRO"].$Route.".css"]);
                 $Content = $Render->Render($Content,["CSSFILEMOBILELOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINKCADASTRO"].$Route."-mobile.css"]);
                 $Content = $Render->Render($Content,["JSCADASTROIP"=>$_ENV["ENDERECO_IP"].$_ENV["CADASTROJS"].".js"]);
+                $Content = $Render->Render($Content,["JSFNCADASTROIP"=>$_ENV["ENDERECO_IP"].$_ENV["FNCADASTROJS"].".js"]);
                 http_response_code(200);
                 return $Content;
             }

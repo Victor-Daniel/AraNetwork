@@ -1,4 +1,4 @@
-var btnCadastrar = document.querySelector("#btn_Cadastrar");
+
 var rb_cpf = document.querySelector("#Pfisica");
 var rb_cnpj = document.querySelector("#Pjuridica");
 var inp_CNPJ =  document.getElementById("CNPJ");
@@ -55,7 +55,4 @@ rb_cnpj.addEventListener("click",function e(){
 });
 
 
-btnCadastrar.addEventListener("click",function e(){
-
-});
 
