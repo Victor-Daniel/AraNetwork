@@ -1,4 +1,6 @@
 
+// Criando ativação e bloqueio de campos por radio button
+
 var rb_cpf = document.querySelector("#Pfisica");
 var rb_cnpj = document.querySelector("#Pjuridica");
 var inp_CNPJ =  document.getElementById("CNPJ");
