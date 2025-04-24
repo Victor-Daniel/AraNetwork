@@ -10,6 +10,7 @@ var lb_CPF = document.getElementById("lb_CPF");
 var inp_RG = document.getElementById("RG");
 var lb_RG = document.getElementById("lb_RG");
 
+
 document.addEventListener("DOMContentLoaded",function e(){
     rb_cpf.checked=true;
     if(rb_cpf.checked==true){
@@ -56,5 +57,15 @@ rb_cnpj.addEventListener("click",function e(){
 
 });
 
+//Tratando o Campo de CPF
 
+inp_CPF.addEventListener("input", function e(){
+    //Remove qualquer caractere que não seja numérico
+    this.value = this.value.replace(/\D/g,"");
 
+    //Limita o campo a 11 caracteres
+    if(this.value.length>11){
+        this.value=this.value.substring(0,11);
+    }
+
+});
