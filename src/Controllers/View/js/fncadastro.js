@@ -16,8 +16,8 @@ function Validar_Campos(){
     //Tipo de validação se o CNPJ for selecionado
     else if (rb_cnpj.checked==true){
         if(inp_CNPJ.value!=""){
-            var arraycnpj = inp_CNPJ.split("").map(Number);
-            Validador_CNPJ(arraycnpj);
+            var arraycnpj = inp_CNPJ.value.split("").map(Number);
+            alert(Validador_CNPJ(arraycnpj));
         }
     }
 }
@@ -74,8 +74,50 @@ function Validador_CPF(arraycpf){
 }
 
 function Validador_CNPJ(arraycnpj){
-    var multiplicador = 9;
-    var soma = 0;
-    var i,j,dv1,dv2,resto = 0;
+    let i,j,soma,dv1,dv2,resto;
+
+    // Calculando Digito Verificador 1
+    i,soma=0;
+    j = 13;
+    for(i=0; i<12; i++){
+        soma+=arraycnpj[i]*j;
+        j = j-1;
+    }
+
+    resto = soma % 14;
+
+    if(resto < 2){
+        dv1 = 0;
+    }
+    else{
+        dv1 = 14 - resto;
+    }
+
+     //Calcular Digito verificador 2
+
+     soma = 0;
+     j = 14;
+ 
+     for(i=0; i<13; i++){
+         soma+=arraycnpj[i]*j;
+         j = j-1;
+     }
+
+     resto = soma % 14;
+
+     if(resto < 2){
+         dv2 = 0;
+     }
+     else{
+         dv2 = 14 - resto;
+     }
+ 
+     if((dv1 == arraycnpj[12])&&(dv2 == arraycnpj[13])){
+         return true;
+     }
+     else{
+         return false;
+     }
+ 
 
 }
