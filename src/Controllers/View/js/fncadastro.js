@@ -3,7 +3,7 @@ var rb_cnpj = document.querySelector("#Pjuridica");
 var btnCadastrar = document.querySelector("#btn_Cadastrar");
 var inp_nome = document.getElementById("inp_nome");
 var inp_CPF = document.getElementById("CPF");
-
+var inp_CNPJ = document.getElementById("CNPJ");
 
 function Validar_Campos(){
     // Tipo de validação se o CPF for selecionado
@@ -15,7 +15,10 @@ function Validar_Campos(){
     }
     //Tipo de validação se o CNPJ for selecionado
     else if (rb_cnpj.checked==true){
-
+        if(inp_CNPJ.value!=""){
+            var arraycnpj = inp_CNPJ.split("").map(Number);
+            Validador_CNPJ(arraycnpj);
+        }
     }
 }
 
@@ -68,4 +71,11 @@ function Validador_CPF(arraycpf){
     else{
         return false;
     }
+}
+
+function Validador_CNPJ(arraycnpj){
+    var multiplicador = 9;
+    var soma = 0;
+    var i,j,dv1,dv2,resto = 0;
+
 }
