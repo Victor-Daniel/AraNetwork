@@ -74,7 +74,7 @@ inp_CNPJ.addEventListener("input",function e(){
        //Remove qualquer caractere que não seja numérico
        this.value = this.value.replace(/\D/g,"");
 
-       //Limita o campo a 11 caracteres
+       //Limita o campo a 14 caracteres
        if(this.value.length>14){
            this.value=this.value.substring(0,14);
        }
