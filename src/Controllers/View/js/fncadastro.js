@@ -25,6 +25,9 @@ function Validar_Campos(){
         if(inp_CPF.value!=""){
             var arraycpf = inp_CPF.value.split("").map(Number);
             safe_cpf = Validador_CPF(arraycpf);
+            if(safe_cpf==false){
+                alert("CPF informado não é válido!");
+            }
         }
     }
     //Tipo de validação se o CNPJ for selecionado
@@ -32,6 +35,9 @@ function Validar_Campos(){
         if(inp_CNPJ.value!=""){
             var arraycnpj = inp_CNPJ.value.split("").map(Number);
             safe_cnpj = Validador_CNPJ(arraycnpj);
+            if(safe_cnpj==false){
+                alert("CNPJ informado não é válido!");
+            }
         }
     }
 
@@ -40,7 +46,10 @@ function Validar_Campos(){
         alert("Preencha todos campos corretamente!");        }
     else{
         result_nome = Validador_Nome(inp_nome.value);
-        alert(result_nome);
+        result_user = Validador_Usuario(inp_user.value);
+        result_pwd = Validador_Senha(inp_pwd.value);
+        result_email = Validador_Email(inp_email.value);
+        result_tel = Validador_Tel(inp_tel.value);
     }
     
 }
@@ -152,4 +161,33 @@ function Validador_Nome(nome){
     let div = document.createElement("div");
     div.textContent=nome;
     return div.innerHTML;
+}
+
+function Validador_Usuario(user){
+    let div = document.createElement("div");
+    div.textContent=user;
+    return div.innerHTML; 
+}
+
+function Validador_Senha(pwd){
+    let div = document.createElement("div");
+    div.textContent=pwd;
+    return div.innerHTML;
+}
+
+function Validador_Email(email){
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+function Validador_Tel(tel){
+    let div = document.createElement("div");
+    div.textContent=tel;
+    let content = div.innerHTML;
+    if(content.length==11){
+        return true;
+    }
+    else{
+        return false;
+    }
 }

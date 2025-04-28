@@ -57,7 +57,7 @@ rb_cnpj.addEventListener("click",function e(){
 
 });
 
-//Tratando o Campo de CPF
+//Tratando o Campo de CPF e CNPJ
 
 inp_CPF.addEventListener("input", function e(){
     //Remove qualquer caractere que não seja numérico
@@ -78,5 +78,5 @@ inp_CNPJ.addEventListener("input",function e(){
        if(this.value.length>14){
            this.value=this.value.substring(0,14);
        }
-})
+});
 
