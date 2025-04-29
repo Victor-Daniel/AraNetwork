@@ -50,6 +50,8 @@ function Validar_Campos(){
         result_pwd = Validador_Senha(inp_pwd.value);
         result_email = Validador_Email(inp_email.value);
         result_tel = Validador_Tel(inp_tel.value);
+        result_cel = Validador_Celular(inp_cel.value);
+        result_data = Validador_Data(inp_data.value);
     }
     
 }
@@ -160,29 +162,72 @@ function Validador_CNPJ(arraycnpj){
 function Validador_Nome(nome){
     let div = document.createElement("div");
     div.textContent=nome;
-    return div.innerHTML;
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
+    if(regex.test(div.innerHTML)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 function Validador_Usuario(user){
     let div = document.createElement("div");
     div.textContent=user;
-    return div.innerHTML; 
+
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
+    if(regex.test(div.innerHTML)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 function Validador_Senha(pwd){
     let div = document.createElement("div");
     div.textContent=pwd;
-    return div.innerHTML;
+
+    if(div.innerHTML < 8){
+        return false;
+    }
+    else{
+        if(div.innerHTML >=8){
+            return true;
+        }
+    }
 }
 
 function Validador_Email(email){
+    let div = document.createElement("div");
+    div.textContent=email;
+
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+
+    if(regex.test(div.innerHTML)==true){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
 }
 
 function Validador_Tel(tel){
     let div = document.createElement("div");
     div.textContent=tel;
+    let content = div.innerHTML;
+    if(content.length==10){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function Validador_Celular(cel){
+    let div = document.createElement("div");
+    div.textContent=cel;
     let content = div.innerHTML;
     if(content.length==11){
         return true;
@@ -190,4 +235,21 @@ function Validador_Tel(tel){
     else{
         return false;
     }
+}
+
+function Validador_Data(data){
+    let div = document.createElement("div");
+    div.textContent=data;
+    let content = div.innerHTML;
+
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+    if(regex.test(div.innerHTML) == true){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+
 }
