@@ -3,7 +3,7 @@
 var rb_cpf = document.querySelector("#Pfisica");
 var rb_cnpj = document.querySelector("#Pjuridica");
 var btnCadastrar = document.querySelector("#btn_Cadastrar");
-var inp_nome = document.getElementById("inp_nome");
+var inp_nome = document.getElementById("nome");
 var inp_CPF = document.getElementById("CPF");
 var inp_CNPJ = document.getElementById("CNPJ");
 var inp_user = document.getElementById("user");
@@ -15,7 +15,7 @@ var inp_data = document.getElementById("data");
 //---------------------------------------------------------------------------------------------------------
 
 //Variáveis p/ dados tratados.
-var safe_cpf,safe_cnpj;
+var safe_cpf,safe_cnpj,nome,user,pwd,rg,tel,cel,data_nasc;
 
 
 function Validar_Campos(){
@@ -43,15 +43,25 @@ function Validar_Campos(){
 
         //Verificação se os outros campos estão vazios
     if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_tel.value=="")||(inp_cel.value=="")||(inp_data.value=="")){
-        alert("Preencha todos campos corretamente!");        }
+        alert("Preencha todos campos corretamente!");      
+    }
     else{
-        result_nome = Validador_Nome(inp_nome.value);
-        result_user = Validador_Usuario(inp_user.value);
-        result_pwd = Validador_Senha(inp_pwd.value);
-        result_email = Validador_Email(inp_email.value);
-        result_tel = Validador_Tel(inp_tel.value);
-        result_cel = Validador_Celular(inp_cel.value);
-        result_data = Validador_Data(inp_data.value);
+        var result_nome = Validador_Nome(inp_nome.value);
+        var result_user = Validador_Usuario(inp_user.value);
+        var result_pwd = Validador_Senha(inp_pwd.value);
+        var result_email = Validador_Email(inp_email.value);
+        var result_tel = Validador_Tel(inp_tel.value);
+        var result_cel = Validador_Celular(inp_cel.value);
+        var result_data = Validador_Data(inp_data.value);
+
+        if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)){
+            url = "http://"+config_API_Cadastro.API_CONECT;
+            alert(url);
+        }
+        else{
+            url = "http://"+config_API_Cadastro.API_CONECT;
+            alert(url);
+        }
     }
     
 }

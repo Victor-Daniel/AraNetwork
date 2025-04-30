@@ -9,7 +9,11 @@ var inp_CPF = document.getElementById("CPF");
 var lb_CPF = document.getElementById("lb_CPF");
 var inp_RG = document.getElementById("RG");
 var lb_RG = document.getElementById("lb_RG");
-
+var inp_tel = document.getElementById("tel");
+var inp_cel = document.getElementById("cel");
+var inp_data = document.getElementById("data");
+var inp_user = document.getElementById("user");
+var inp_nome = document.getElementById("nome");
 
 document.addEventListener("DOMContentLoaded",function e(){
     rb_cpf.checked=true;
@@ -80,3 +84,50 @@ inp_CNPJ.addEventListener("input",function e(){
        }
 });
 
+//Impedindo a digitação de caracteres não autorizados.
+inp_tel.addEventListener("keypress", function e(element){
+    const permitido = /[0-9]/;
+
+    if(!permitido.test(element.key)){
+        element.preventDefault();
+    }
+});
+
+inp_cel.addEventListener("keypress",function e(element){
+    const permitido = /[0-9]/;
+
+    if(!permitido.test(element.key)){
+        element.preventDefault();
+    }
+});
+
+inp_RG.addEventListener("keypress", function e(element){
+    const permitido = /[0-9]/;
+
+    if(!permitido.test(element.key)){
+        element.preventDefault();
+    }
+});
+
+inp_data.addEventListener("keypress", function e(element){
+    const permitido = /[0-9\/]/; // apenas números e barra
+      if (!permitido.test(element.key)) {
+        element.preventDefault();
+      }
+});
+
+inp_user.addEventListener("keypress", function e(element){
+    const permitido = /^[\p{L}\p{N}\s]+$/u;
+
+    if(!permitido.test(element.key)){
+        element.preventDefault();
+    }
+});
+
+inp_nome.addEventListener("keypress", function e(element){
+    const regex = /^[\p{L}\p{N}\s]+$/u;
+
+    if(!regex.test(element.key)){
+        element.preventDefault();
+    }
+});
