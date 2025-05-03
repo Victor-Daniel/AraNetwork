@@ -56,11 +56,10 @@ function Validar_Campos(){
 
         if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)){
             url = "http://"+config_API_Cadastro.API_CONECT;
-            alert(url);
+            
         }
         else{
-            url = "http://"+config_API_Cadastro.API_CONECT;
-            alert(url);
+            alert("Verifique se os campos estão preenchidos corretamente!");
         }
     }
     
@@ -69,6 +68,9 @@ function Validar_Campos(){
 btnCadastrar.addEventListener("click",function e(){
     Validar_Campos();
 });
+
+
+//Criando os validadores dos campos do cadastro.
 
 function Validador_CPF(arraycpf){
     let i,j,soma,dv1,dv2,resto;
