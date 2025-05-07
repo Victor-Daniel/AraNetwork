@@ -25,6 +25,15 @@ class RoutesAPI{
 
     }
 
+    public static function Get_ContentType_API(){
+        if($_SERVER["CONTENT_TYPE"]!="application/json"){
+            return array("msg"=>"Erro no Content-Type","code"=>415);
+        }
+        else{
+            return array("msg"=>"Requisicao bem-sucedida!","code"=>200);
+        }
+    }
+
 }
 
 ?>

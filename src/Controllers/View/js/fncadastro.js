@@ -12,6 +12,9 @@ var inp_email = document.getElementById("email");
 var inp_tel = document.getElementById("tel");
 var inp_cel = document.getElementById("cel");
 var inp_data = document.getElementById("data");
+var inp_rg = document.getElementById("RG");
+var tel_tratado;
+var cel_tratado;
 //---------------------------------------------------------------------------------------------------------
 
 //Variáveis p/ dados tratados.
@@ -46,6 +49,8 @@ function Validar_Campos(){
         alert("Preencha todos campos corretamente!");      
     }
     else{
+
+        //Verificar se os resultados são verdadeiros, se for, começará a criação do json para envio dos dados.
         var result_nome = Validador_Nome(inp_nome.value);
         var result_user = Validador_Usuario(inp_user.value);
         var result_pwd = Validador_Senha(inp_pwd.value);
@@ -55,11 +60,49 @@ function Validar_Campos(){
         var result_data = Validador_Data(inp_data.value);
 
         if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)){
+
+            //Tratando os dados para envio
             url = "http://"+config_API_Cadastro.API_CONECT;
+            let Dados;
+            if(rb_cpf.checked==true){
+                Dados = {
+                    nome: inp_nome.value,
+                    usuario: inp_user.value,
+                    passwd: inp_pwd.value,
+                    email: inp_email.value,
+                    cpf : inp_CPF.value,
+                    rg : inp_rg.value,
+                    telefone: tel_tratado,
+                    celular: cel_tratado,
+                    data : inp_data.value
+                };
+            }
+            else if (rb_cnpj.checked==true){
+                Dados = {
+                    nome: inp_nome.value,
+                    usuario: inp_user.value,
+                    passwd: inp_pwd.value,
+                    email: inp_email.value,
+                    cnpj: inp_CNPJ.value,
+                    telefone: tel_tratado,
+                    celular: cel_tratado,
+                    data : inp_data.value
+                };
+            }
             
-        }
-        else{
-            alert("Verifique se os campos estão preenchidos corretamente!");
+            //Criando o json para envio dos dados.
+            let DadosJson = JSON.stringify(Dados);
+            fetch(url,{
+                method: "POST",
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body: DadosJson
+            }).then(response=>response.json()).then(data=>{
+                console.log(data);
+            }).catch(error=>{
+                console.log("Erro ao enviar os Dados!", error);
+            });
         }
     }
     
@@ -179,6 +222,7 @@ function Validador_Nome(nome){
         return true;
     }
     else{
+        alert("Nome foi digitado de maneira incorreta!")
         return false;
     }
 }
@@ -188,10 +232,11 @@ function Validador_Usuario(user){
     div.textContent=user;
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
-    if(regex.test(div.innerHTML)){
+    if(regex.test(div.innerHTML) == true){
         return true;
     }
     else{
+        alert("Nome de usuário inválido!");
         return false;
     }
 }
@@ -220,6 +265,7 @@ function Validador_Email(email){
         return true;
     }
     else{
+        alert("Email inválido!");
         return false;
     }
     
@@ -230,9 +276,14 @@ function Validador_Tel(tel){
     div.textContent=tel;
     let content = div.innerHTML;
     if(content.length==10){
+        let ddd = content.slice(0,2);
+        let p_quarteto = content.slice(2,6);
+        let s_quarteto = content.slice(6,10);
+        tel_tratado = "("+ddd+")"+p_quarteto+"-"+s_quarteto;
         return true;
     }
     else{
+        alert("Telefone inválido!");
         return false;
     }
 }
@@ -242,9 +293,14 @@ function Validador_Celular(cel){
     div.textContent=cel;
     let content = div.innerHTML;
     if(content.length==11){
+        let ddd = content.slice(0,2);
+        let p_quarteto = content.slice(2,7);
+        let s_quarteto = content.slice(7,11);
+        cel_tratado= "("+ddd+")"+p_quarteto+"-"+s_quarteto;
         return true;
     }
     else{
+        alert("Celular inválido!");
         return false;
     }
 }
@@ -260,6 +316,7 @@ function Validador_Data(data){
         return true;
     }
     else{
+        alert("Data está incorreta!");
         return false;
     }
 

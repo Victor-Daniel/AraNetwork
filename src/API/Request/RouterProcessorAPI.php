@@ -3,6 +3,7 @@ namespace App\API\Request;
 
 class RouterProcessorAPI{
 
+    //Tratando e retornando URL
     public function Get_URI_API(){
         $URI = $_SERVER['REQUEST_URI'];
         $Current_URI = str_replace(getenv('Prefix_URI'),"",$URI);

@@ -15,6 +15,8 @@ var inp_data = document.getElementById("data");
 var inp_user = document.getElementById("user");
 var inp_nome = document.getElementById("nome");
 
+
+
 document.addEventListener("DOMContentLoaded",function e(){
     rb_cpf.checked=true;
     if(rb_cpf.checked==true){
@@ -99,6 +101,7 @@ inp_cel.addEventListener("keypress",function e(element){
     if(!permitido.test(element.key)){
         element.preventDefault();
     }
+
 });
 
 inp_RG.addEventListener("keypress", function e(element){
