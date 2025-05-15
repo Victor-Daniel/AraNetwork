@@ -13,17 +13,25 @@
     $ContentRequest= RoutesAPI::Get_ContentType_API();
 
     if($ContentRequest["code"]==200){
-        http_response_code(200);
+        // Caso o Content-Type estiver correto, inicializa o processo de processamento da requisição (Dados).
+        http_response_code($ContentRequest["code"]);
         $input = file_get_contents("php://input");
+        $dados = json_decode($input,true);
 
-        $dados = json_decode($input);
+        if(array_key_exists("cpf",$dados)){
+            $Cadastrar_Dados = new CadastrarDados($dados["nome"],$dados["usuario"],$dados["passwd"],$dados["email"],$dados["telefone"],$dados["celular"],$dados["data"]);
+            $ContentRequest = $Cadastrar_Dados->Cadastrar_Usuario_CPF($dados["rg"],$dados["cpf"]);
+        }
+        if(array_key_exists("cnpj",$dados)){
+
+        }
         
-        // Falta terminar a tratativa dos dados;
-
-        echo json_encode(array("msg"=>"Requisicao bem-sucedida!","code"=>200));
+        echo json_encode($ContentRequest);
     }
     else{
-        http_response_code(415);
-        echo json_encode(array("msg"=>"Content-Type errado!","code"=>415));
+
+        //Caso o Content-Type seja errado, retornará codigo 415
+        http_response_code($ContentRequest["code"]);
+        echo json_encode($ContentRequest);
     }
 ?>

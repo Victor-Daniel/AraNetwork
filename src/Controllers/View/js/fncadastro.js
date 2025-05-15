@@ -95,7 +95,7 @@ function Validar_Campos(){
             fetch(url,{
                 method: "POST",
                 headers: {
-                    "Content-Type":"application/json"
+                    "Content-Type": "application/json"
                 },
                 body: DadosJson
             }).then(response=>response.json()).then(data=>{
