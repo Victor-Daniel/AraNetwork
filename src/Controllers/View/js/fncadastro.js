@@ -306,13 +306,9 @@ function Validador_Celular(cel){
 }
 
 function Validador_Data(data){
-    let div = document.createElement("div");
-    div.textContent=data;
-    let content = div.innerHTML;
-
-    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-
-    if(regex.test(div.innerHTML) == true){
+    const regex = /^\d{2}-\d{2}-\d{4}$/;
+    const dataFormatada = data.substring(0, 2) + "-" + data.substring(2, 4) + "-" + data.substring(4);
+    if(regex.test(dataFormatada) == true){
         return true;
     }
     else{
