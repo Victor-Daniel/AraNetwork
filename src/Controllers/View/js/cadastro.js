@@ -22,7 +22,6 @@ var inp_complemento = document.getElementById("complemento");
 var inp_uf = document.getElementById("UF");
 var inp_cep = document.getElementById("CEP");
 
-
 document.addEventListener("DOMContentLoaded",function e(){
     rb_cpf.checked=true;
     if(rb_cpf.checked==true){
@@ -37,6 +36,8 @@ document.addEventListener("DOMContentLoaded",function e(){
         inp_CPF.disabled=false;
         inp_CPF.style.borderColor="#2F4F4F";
         lb_CPF.style.color="#2F4F4F";
+
+        inp_data.disabled=false;
     }
 });
 
@@ -53,6 +54,8 @@ rb_cpf.addEventListener("click",function e(){
     inp_RG.style.borderColor="#2F4F4F";
     lb_RG.style.color="#2F4F4F";
     inp_CNPJ.value="";
+
+    inp_data.disabled=false;
 });
 
 rb_cnpj.addEventListener("click",function e(){
@@ -70,6 +73,8 @@ rb_cnpj.addEventListener("click",function e(){
 
     inp_CPF.value="";
     inp_RG.value="";
+
+    inp_data.disabled=true;
 });
 
 //Tratando o Campo de CPF e CNPJ
@@ -152,14 +157,14 @@ inp_email.addEventListener("keypress", function(element){
 });
 
 inp_endereco.addEventListener("keypress", function(element){
-    const regex = /^[a-zA-Z]+$/;
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
      if(!regex.test(element.key)){
         element.preventDefault();
     }
 });
 
 inp_bairro.addEventListener("keypress", function(element){
-    const regex = /^[a-zA-Z]+$/;
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
     if(!regex.test(element.key)){
         element.preventDefault();
     }
@@ -173,14 +178,14 @@ inp_numero.addEventListener("keypress", function(element){
 });
 
 inp_complemento.addEventListener("keypress", function(element){
-     const regex = /[A-Za-z]/;
+     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
     if(!regex.test(element.key)){
         element.preventDefault();
     }
 });
 
 inp_uf.addEventListener("keypress", function(element){
-    const regex = /^[a-zA-Z]+$/;
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
     if(!regex.test(element.key)){
         element.preventDefault();
     }

@@ -15,6 +15,12 @@ var inp_data = document.getElementById("data");
 var inp_rg = document.getElementById("RG");
 var tel_tratado;
 var cel_tratado;
+var inp_endereco = document.getElementById("endereco");
+var inp_bairro = document.getElementById("bairro");
+var inp_complemento = document.getElementById("complemento");
+var inp_numero = document.getElementById("numero");
+var inp_cep = document.getElementById("CEP");
+var inp_uf = document.getElementById("UF");
 //---------------------------------------------------------------------------------------------------------
 
 //Variáveis p/ dados tratados.
@@ -45,7 +51,8 @@ function Validar_Campos(){
     }
 
         //Verificação se os outros campos estão vazios
-    if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_tel.value=="")||(inp_cel.value=="")||(inp_data.value=="")){
+    if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_tel.value=="")||(inp_cel.value=="")||(inp_data.value=="")||
+        (inp_endereco.value=="")||(inp_bairro.value=="")||(inp_complemento.value=="")||(inp_numero.value=="")||(inp_uf.value=="")||(inp_cep.value=="")){
         alert("Preencha todos campos corretamente!");      
     }
     else{
@@ -58,8 +65,15 @@ function Validar_Campos(){
         var result_tel = Validador_Tel(inp_tel.value);
         var result_cel = Validador_Celular(inp_cel.value);
         var result_data = Validador_Data(inp_data.value);
+        var result_endereco = Validador_Endereco(inp_endereco.value);
+        var result_bairro = Validador_Bairro(inp_bairro.value);
+        var result_complemento = Validador_Complemento(inp_complemento.value);
+        var result_numero = Validador_Numero(inp_numero.value);
+        var result_cep = Validador_Cep(inp_cep.value);
+        var result_uf = Validador_UF(inp_uf.value);
 
-        if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)){
+        if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)||
+            (result_endereco==true)||(result_bairro==true)||(result_complemento==true)||(result_numero==true)||(result_cep==true)||(result_uf==true)){
 
             //Tratando os dados para envio
             url = "http://"+config_API_Cadastro.API_CONECT;
@@ -74,7 +88,13 @@ function Validar_Campos(){
                     rg : inp_rg.value,
                     telefone: tel_tratado,
                     celular: cel_tratado,
-                    data : inp_data.value
+                    data : inp_data.value,
+                    endereco : inp_data.value,
+                    bairro: inp_bairro.value,
+                    complemento: inp_complemento.value,
+                    numero: inp_numero.value,
+                    uf: inp_uf.value,
+                    cep: inp_cep.value
                 };
             }
             else if (rb_cnpj.checked==true){
@@ -86,7 +106,12 @@ function Validar_Campos(){
                     cnpj: inp_CNPJ.value,
                     telefone: tel_tratado,
                     celular: cel_tratado,
-                    data : inp_data.value
+                    endereco: inp_data.value,
+                    bairro: inp_bairro.value,
+                    complemento: inp_complemento.value,
+                    numero: inp_numero.value,
+                    uf: inp_uf.value,
+                    cep: inp_cep.value
                 };
             }
             
@@ -215,10 +240,9 @@ function Validador_CNPJ(arraycnpj){
 }
 
 function Validador_Nome(nome){
-    let div = document.createElement("div");
-    div.textContent=nome;
+
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
-    if(regex.test(div.innerHTML)){
+    if(regex.test(nome)){
         return true;
     }
     else{
@@ -228,11 +252,9 @@ function Validador_Nome(nome){
 }
 
 function Validador_Usuario(user){
-    let div = document.createElement("div");
-    div.textContent=user;
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
-    if(regex.test(div.innerHTML) == true){
+    if(regex.test(user) == true){
         return true;
     }
     else{
@@ -242,26 +264,22 @@ function Validador_Usuario(user){
 }
 
 function Validador_Senha(pwd){
-    let div = document.createElement("div");
-    div.textContent=pwd;
 
-    if(div.innerHTML < 8){
+    if(pwd < 8){
         return false;
     }
     else{
-        if(div.innerHTML >=8){
+        if(pwd >=8){
             return true;
         }
     }
 }
 
 function Validador_Email(email){
-    let div = document.createElement("div");
-    div.textContent=email;
 
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if(regex.test(div.innerHTML)==true){
+    if(regex.test(email)==true){
         return true;
     }
     else{
@@ -272,13 +290,11 @@ function Validador_Email(email){
 }
 
 function Validador_Tel(tel){
-    let div = document.createElement("div");
-    div.textContent=tel;
-    let content = div.innerHTML;
-    if(content.length==10){
-        let ddd = content.slice(0,2);
-        let p_quarteto = content.slice(2,6);
-        let s_quarteto = content.slice(6,10);
+
+    if(tel.length==10){
+        let ddd = tel.slice(0,2);
+        let p_quarteto = tel.slice(2,6);
+        let s_quarteto = tel.slice(6,10);
         tel_tratado = "("+ddd+")"+p_quarteto+"-"+s_quarteto;
         return true;
     }
@@ -289,13 +305,10 @@ function Validador_Tel(tel){
 }
 
 function Validador_Celular(cel){
-    let div = document.createElement("div");
-    div.textContent=cel;
-    let content = div.innerHTML;
-    if(content.length==11){
-        let ddd = content.slice(0,2);
-        let p_quarteto = content.slice(2,7);
-        let s_quarteto = content.slice(7,11);
+    if(cel.length==11){
+        let ddd = cel.slice(0,2);
+        let p_quarteto = cel.slice(2,7);
+        let s_quarteto = cel.slice(7,11);
         cel_tratado= "("+ddd+")"+p_quarteto+"-"+s_quarteto;
         return true;
     }
@@ -317,4 +330,72 @@ function Validador_Data(data){
     }
 
 
+}
+
+function Validador_Endereco(endereco){
+
+    var regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+   if(regex.test(endereco)){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+}
+
+function Validador_Bairro(bairro){
+
+    var regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+   if(regex.test(bairro)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function Validador_Complemento(complemento){
+    const regex = /^[A-Za-zÀ-Ö0-9Ø-öø-ÿ\s]+$/;
+    if(regex.test(complemento)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function Validador_Numero(numero){
+     const regex = /[0-9]/;
+     
+     if(regex.test(numero)){
+        return true;
+     }
+     else{
+        return false;
+     }
+}
+
+function Validador_Cep(cep){
+    const regex = /[0-9]/;
+
+    if(regex.test(cep)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}   
+
+function Validador_UF(uf){
+    var regex = /^[A-Za-z]+$/;
+    if(regex.test(uf)){
+        inp_uf.value = uf.toUpperCase();
+        return true;
+    }
+    else{
+        return false;
+    }
 }

@@ -22,7 +22,7 @@ class CadastrarDados{
 
 
     public function Cadastrar_Usuario_CPF($RG,$CPF){
-        $this->Conection = new mysqli();
+        
     }
 }
 
