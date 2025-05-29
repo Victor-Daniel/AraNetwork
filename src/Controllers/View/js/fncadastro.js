@@ -51,9 +51,9 @@ function Validar_Campos(){
     }
 
         //Verificação se os outros campos estão vazios
-    if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_tel.value=="")||(inp_cel.value=="")||(inp_data.value=="")||
+    if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_cel.value=="")||(inp_data.value=="")||
         (inp_endereco.value=="")||(inp_bairro.value=="")||(inp_complemento.value=="")||(inp_numero.value=="")||(inp_uf.value=="")||(inp_cep.value=="")){
-        alert("Preencha todos campos corretamente!");      
+        alert("Preencha todos campos obrigatórios corretamente!");      
     }
     else{
 
@@ -78,7 +78,11 @@ function Validar_Campos(){
             //Tratando os dados para envio
             url = "http://"+config_API_Cadastro.API_CONECT;
             let Dados;
+            var DataAjustada = Formatacao_Data(inp_data.value);
             if(rb_cpf.checked==true){
+                if(inp_tel.value==""){
+                    tel_tratado="";
+                }
                 Dados = {
                     nome: inp_nome.value,
                     usuario: inp_user.value,
@@ -88,13 +92,13 @@ function Validar_Campos(){
                     rg : inp_rg.value,
                     telefone: tel_tratado,
                     celular: cel_tratado,
-                    data : inp_data.value,
-                    endereco : inp_data.value,
+                    data : DataAjustada,
+                    endereco : inp_endereco.value,
+                    numero: inp_numero.value,
                     bairro: inp_bairro.value,
                     complemento: inp_complemento.value,
-                    numero: inp_numero.value,
                     uf: inp_uf.value,
-                    cep: inp_cep.value
+                    cep: inp_cep.value    
                 };
             }
             else if (rb_cnpj.checked==true){
@@ -253,7 +257,7 @@ function Validador_Nome(nome){
 
 function Validador_Usuario(user){
 
-    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
+    const regex = /^[A-Za-z0-9À-ÖØ-öø-ÿ\s\-]+$/;
     if(regex.test(user) == true){
         return true;
     }
@@ -291,37 +295,53 @@ function Validador_Email(email){
 
 function Validador_Tel(tel){
 
-    if(tel.length==10){
-        let ddd = tel.slice(0,2);
-        let p_quarteto = tel.slice(2,6);
-        let s_quarteto = tel.slice(6,10);
-        tel_tratado = "("+ddd+")"+p_quarteto+"-"+s_quarteto;
+    let regex = /^[0-9]*$/;
+
+    if(regex.test(tel)){
+        if(tel.length<=10){
+            let ddd = tel.slice(0,2);
+            let p_quarteto = tel.slice(2,6);
+            let s_quarteto = tel.slice(6,10);
+            tel_tratado = "("+ddd+")"+p_quarteto+"-"+s_quarteto;
+        }
         return true;
     }
     else{
         alert("Telefone inválido!");
         return false;
     }
+
 }
 
 function Validador_Celular(cel){
-    if(cel.length==11){
-        let ddd = cel.slice(0,2);
-        let p_quarteto = cel.slice(2,7);
-        let s_quarteto = cel.slice(7,11);
-        cel_tratado= "("+ddd+")"+p_quarteto+"-"+s_quarteto;
-        return true;
-    }
-    else{
-        alert("Celular inválido!");
+
+     let regex = /^[0-9]+$/;
+
+     if(regex.test(cel)){
+        if(cel.length==11){
+            let ddd = cel.slice(0,2);
+            let p_quarteto = cel.slice(2,7);
+            let s_quarteto = cel.slice(7,11);
+            cel_tratado= "("+ddd+")"+p_quarteto+"-"+s_quarteto;
+            return true;
+        }
+        else{
+            alert("Celular inválido!");
         return false;
-    }
+        }
+     }
+     else{
+        alert("O celular foi digitado com formato inválido!");
+        return false;
+     }
 }
 
 function Validador_Data(data){
-    const regex = /^\d{2}-\d{2}-\d{4}$/;
-    const dataFormatada = data.substring(0, 2) + "-" + data.substring(2, 4) + "-" + data.substring(4);
-    if(regex.test(dataFormatada) == true){
+    const regex = /^\d{2}-\d{2}-\d{4}$/; 
+
+    const NovaData = data.substring(0, 2) + "-" + data.substring(2, 4) + "-" + data.substring(4);
+
+    if(regex.test(NovaData) == true){
         return true;
     }
     else{
@@ -398,4 +418,12 @@ function Validador_UF(uf){
     else{
         return false;
     }
+}
+
+// Formatação da data 
+
+function Formatacao_Data(data){
+    const NovaData = data.substring(0, 2) + "-" + data.substring(2, 4) + "-" + data.substring(4);
+    return NovaData;
+
 }

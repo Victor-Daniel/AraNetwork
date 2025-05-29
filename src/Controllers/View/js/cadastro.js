@@ -12,6 +12,7 @@ var lb_RG = document.getElementById("lb_RG");
 var inp_tel = document.getElementById("tel");
 var inp_cel = document.getElementById("cel");
 var inp_data = document.getElementById("data");
+var lb_data = document.getElementById("lb_data");
 var inp_user = document.getElementById("user");
 var inp_nome = document.getElementById("nome");
 var inp_email = document.getElementById("email");
@@ -38,6 +39,8 @@ document.addEventListener("DOMContentLoaded",function e(){
         lb_CPF.style.color="#2F4F4F";
 
         inp_data.disabled=false;
+        inp_data.style.borderColor="#2F4F4F";
+        lb_data.style.color="#2F4F4F";
     }
 });
 
@@ -55,7 +58,10 @@ rb_cpf.addEventListener("click",function e(){
     lb_RG.style.color="#2F4F4F";
     inp_CNPJ.value="";
 
+    inp_data.value="";
     inp_data.disabled=false;
+    inp_data.style.borderColor="#2F4F4F";
+    lb_data.style.color="#2F4F4F";
 });
 
 rb_cnpj.addEventListener("click",function e(){
@@ -74,7 +80,10 @@ rb_cnpj.addEventListener("click",function e(){
     inp_CPF.value="";
     inp_RG.value="";
 
+    inp_data.value="";
     inp_data.disabled=true;
+    inp_data.style.borderColor="#cecece";
+    lb_data.style.color="#cecece";
 });
 
 //Tratando o Campo de CPF e CNPJ
