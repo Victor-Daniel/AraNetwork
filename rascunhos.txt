@@ -1,0 +1,2 @@
+(result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)&&
+(result_endereco==true)&&(result_bairro==true)&&(result_complemento==true)&&(result_numero==true)&&(result_cep==true)&&(result_uf==true)
