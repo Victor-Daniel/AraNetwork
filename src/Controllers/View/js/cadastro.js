@@ -9,7 +9,7 @@ var inp_CPF = document.getElementById("CPF");
 var lb_CPF = document.getElementById("lb_CPF");
 var inp_RG = document.getElementById("RG");
 var lb_RG = document.getElementById("lb_RG");
-var inp_tel = document.getElementById("tel");
+var inp_cidade = document.getElementById("cidade");
 var inp_cel = document.getElementById("cel");
 var inp_data = document.getElementById("data");
 var lb_data = document.getElementById("lb_data");
@@ -110,8 +110,8 @@ inp_CNPJ.addEventListener("input",function e(){
 });
 
 //Impedindo a digitação de caracteres não autorizados.
-inp_tel.addEventListener("keypress", function e(element){
-    const permitido = /[0-9]/;
+inp_cidade.addEventListener("keypress", function e(element){
+    const permitido = /^[\p{L}\p{N}\s]+$/u;
 
     if(!permitido.test(element.key)){
         element.preventDefault();

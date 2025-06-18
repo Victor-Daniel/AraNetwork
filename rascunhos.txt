@@ -1,2 +1,58 @@
-(result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)&&
-(result_endereco==true)&&(result_bairro==true)&&(result_complemento==true)&&(result_numero==true)&&(result_cep==true)&&(result_uf==true)
+
+Comando de debug para json via js para jsons vindo do srv php
+
+                                fetch(url, {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: DadosJson
+                                })
+                                .then(res => res.text()) // ← captura como texto cru
+                                .then(text => {
+                                    console.log("Resposta bruta do servidor:", text);
+                                    try {
+                                            const json = JSON.parse(text);
+                                            console.log("JSON válido:", json);
+                                    } catch (err) {
+                                            console.error("Não é JSON válido:", err);
+                                    }
+                                })
+                                .catch(error => {
+                                console.error("Erro na requisição:", error);
+                                });
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+            $senhaSegura = $pass->GeradorSenhas($Array["passwd"]);
+
+            $sql = "INSERT INTO usuarios_pf (
+            nome, usuario, passwd, email, cpf, rg, celular, data_nasc, endereco,
+            bairro, complemento, numero, cidade, uf, cep, data_atualizacao_reg
+            ) VALUES (
+            :nome, :usuario, :passwd, :email, :cpf, :rg, :celular, :data_nasc, :endereco,
+            :bairro, :complemento, :numero, :cidade, :uf, :cep, :data_atualizacao
+            );";
+
+            $comando = $conn->prepare($sql);
+            $comando->execute([
+                ':nome' => $Array["nome"],
+                ':usuario' => $Array["usuario"],
+                ':passwd' => $senhaSegura,
+                ':email' => $Array["email"],
+                ':cpf' => $Array["cpf"],
+                ':rg' => $Array["rg"],
+                ':celular' => $Array["celular"],
+                ':data_nasc' => $Array["data"], // já deve estar em d-m-Y
+                ':endereco' => $Array["endereco"],
+                ':bairro' => $Array["bairro"],
+                ':complemento' => $Array["complemento"],
+                ':numero' => $Array["numero"],
+                ':cidade' => $Array["cidade"],
+                ':uf' => $Array["uf"],
+                ':cep' => $Array["cep"],
+                ':data_atualizacao' => $dataAgora
+            ]);
+
+            if($comando){
+                return true;
+            }

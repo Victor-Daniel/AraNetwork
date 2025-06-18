@@ -9,11 +9,10 @@ var inp_CNPJ = document.getElementById("CNPJ");
 var inp_user = document.getElementById("user");
 var inp_pwd = document.getElementById("pwd");
 var inp_email = document.getElementById("email");
-var inp_tel = document.getElementById("tel");
+var inp_cidade = document.getElementById("cidade");
 var inp_cel = document.getElementById("cel");
 var inp_data = document.getElementById("data");
 var inp_rg = document.getElementById("RG");
-var tel_tratado;
 var cel_tratado;
 var inp_endereco = document.getElementById("endereco");
 var inp_bairro = document.getElementById("bairro");
@@ -24,8 +23,8 @@ var inp_uf = document.getElementById("UF");
 //---------------------------------------------------------------------------------------------------------
 
 //Variáveis p/ dados tratados.
-var safe_cpf,safe_cnpj,url,tel_tratado,cel_tratado,Dados;
-tel_tratado = "";
+var safe_cpf,safe_cnpj,url,cel_tratado,Dados;
+cel_tratado="";
 let DadosJson;
 
 
@@ -35,7 +34,7 @@ function Validar_Campos(){
         var result_user = Validador_Usuario(inp_user.value);
         var result_pwd = Validador_Senha(inp_pwd.value);
         var result_email = Validador_Email(inp_email.value);
-        var result_tel = Validador_Tel(inp_tel.value);
+        var result_cidade = Validador_Cidade(inp_cidade.value);
         var result_cel = Validador_Celular(inp_cel.value);
         var result_data = Validador_Data(inp_data.value);
         var result_rg = Validador_RG(inp_rg.value);
@@ -59,13 +58,13 @@ function Validar_Campos(){
                 alert("CPF informado não é válido!");
             }
             else{
-                if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_cel.value=="")||(inp_tel=="")||(inp_data.value=="")||
+                if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_cel.value=="")||(inp_data.value=="")||(inp_cidade.value=="")||
                     (inp_endereco.value=="")|| (inp_rg.value=="")||(inp_bairro.value=="")||(inp_complemento.value=="")||(inp_numero.value=="")||(inp_uf.value=="")||(inp_cep.value=="")){
                         alert("Preencha todos campos obrigatórios corretamente!");
 
                 }
                 else{
-                        if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_rg==true)&&(result_email==true)&&(result_tel==true)&&(result_cel==true)&&(result_data==true)&&
+                        if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_rg==true)&&(result_email==true)&&(result_cidade==true)&&(result_cel==true)&&(result_data==true)&&
                         (result_endereco==true)&&(result_bairro==true)&&(result_complemento==true)&&(result_numero==true)&&(result_cep==true)&&(result_uf==true)){
 
                             //Tratando os dados para envio
@@ -79,7 +78,7 @@ function Validar_Campos(){
                                 email: inp_email.value,
                                 cpf : inp_CPF.value,
                                 rg : inp_rg.value,
-                                telefone: tel_tratado,
+                                cidade: inp_cidade.value,
                                 celular: cel_tratado,
                                 data : DataAjustada,
                                 endereco : inp_endereco.value,
@@ -92,14 +91,16 @@ function Validar_Campos(){
                 
                             //Criando o json para envio dos dados.
                             DadosJson = JSON.stringify(Dados);
+
+
                             fetch(url,{
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
                                 body: DadosJson
-                            }).then(response=>response.json()).then(data=>{
-                                console.log(data);
+                            }).then(response=>response.text()).then(data=>{                               
+                                console.log("Response Server",data);
                             }).catch(error=>{
                                 console.log("Erro ao enviar os Dados!", error);
                             });
@@ -124,13 +125,13 @@ function Validar_Campos(){
             }
             else{
                 //Verificação se os outros campos estão vazios
-                if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_cel.value=="")||
+                if((inp_nome.value=="")||(inp_user.value=="")||(inp_pwd.value == "")||(inp_email.value=="")||(inp_cel.value=="")||(inp_cidade.value=="")||
                     (inp_endereco.value=="")||(inp_bairro.value=="")||(inp_complemento.value=="")||(inp_numero.value=="")||(inp_uf.value=="")||(inp_cep.value=="")){
                     alert("Preencha todos campos obrigatórios corretamente!");
 
                 }
                 else{
-                    if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_tel==true||inp_tel.value=="")&&(result_cel==true)&&
+                    if((result_nome==true)&&(result_user==true)&&(result_pwd==true)&&(result_email==true)&&(result_cidade==true)&&(result_cel==true)&&
                     (result_endereco==true)&&(result_bairro==true)&&(result_complemento==true)&&(result_numero==true)&&(result_cep==true)&&(result_uf==true)){
 
                         //Tratando os dados para envio
@@ -141,7 +142,7 @@ function Validar_Campos(){
                                 passwd: inp_pwd.value,
                                 email: inp_email.value,
                                 cnpj: inp_CNPJ.value,
-                                telefone: inp_tel.value,
+                                cidade: inp_cidade.value,
                                 celular: inp_cel.value,
                                 endereco: inp_endereco.value,
                                 bairro: inp_bairro.value,
@@ -335,25 +336,14 @@ function Validador_Email(email){
     
 }
 
-function Validador_Tel(tel){
+function Validador_Cidade(cidade){
 
-    let regex = /^[0-9]*$/;
-
-    if(regex.test(tel)){
-        if(tel.length==10){
-            let ddd = tel.slice(0,2);
-            let p_quarteto = tel.slice(2,6);
-            let s_quarteto = tel.slice(6,10);
-            tel_tratado = "("+ddd+")"+p_quarteto+"-"+s_quarteto;
-            return true;
-        }
-        else if(tel.length==0){
-            tel_tratado = "";
-            return true;
-        }
+    const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-]+$/;
+    if(regex.test(cidade)){
+        return true;
     }
     else{
-        alert("Telefone inválido!");
+        alert("Cidade foi digitado de maneira incorreta!")
         return false;
     }
 
