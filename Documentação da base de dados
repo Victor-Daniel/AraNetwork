@@ -1,0 +1,11 @@
+O diretório pardrão é: /etc/mysql-conection/data-config.ini
+
+Variáveis e valores padrão:
+
+MYSQL_HOST=mysql-AraNetwork
+MYSQL_PORT=3306
+MYSQL_DATABASE=ara_db
+MYSQL_USER_ROOT=root
+MYSQL_ROOT_PASSWORD=HwWin10A.1
+MYSQL_USER=AraNet
+MYSQL_PASSWORD=dev123@

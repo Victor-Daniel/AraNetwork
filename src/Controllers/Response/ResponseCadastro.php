@@ -5,8 +5,10 @@ namespace App\Controllers\Response;
 use App\Utilities\FileChecker;
 use App\Utilities\FileReader;
 use App\Utilities\FileRender;
+use App\Config\Config;
 
 class ResponseCadastro{
+
 
     public static function Get_Content($Route){
         $checker = new FileChecker();
@@ -19,14 +21,15 @@ class ResponseCadastro{
         }
         else{
             if($checker->FileVerify($Route)){
+
+                $config = self::ini_file();
                 $Content = $reader->Reader($Route);
-                $Content = $Render->Render($Content,["CSSFILEPCLOCAL"=>$_ENV["ENDERECO_LOCAL"].$_ENV["CSSLINKCADASTRO"].$Route.".css"]);
-                $Content = $Render->Render($Content,["CSSFILEMOBILELOCAL"=>$_ENV["ENDERECO_LOCAL"].$_ENV["CSSLINKCADASTRO"].$Route."-mobile.css"]);
-                $Content = $Render->Render($Content,["CSSFILEPCLOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINKCADASTRO"].$Route.".css"]);
-                $Content = $Render->Render($Content,["CSSFILEMOBILELOCALIP"=>$_ENV["ENDERECO_IP"].$_ENV["CSSLINKCADASTRO"].$Route."-mobile.css"]);
-                $Content = $Render->Render($Content,["JSCADASTROIP"=>$_ENV["ENDERECO_IP"].$_ENV["CADASTROJS"].".js"]);
-                $Content = $Render->Render($Content,["JSFNCADASTROIP"=>$_ENV["ENDERECO_IP"].$_ENV["FNCADASTROJS"].".js"]);
-                $Content = $Render->Render($Content,["JSCONFIG"=>$_ENV["ENDERECO_IP"].$_ENV["CADASTROCONFIGJS"].".js"]);
+                $Content = $Render->Render($Content,["CSSFILEPCLOCAL"=>$config["ENDERECO_LOCAL"].$config["CSSLINKCADASTRO"].$Route.".css"]);
+                $Content = $Render->Render($Content,["CSSFILEMOBILELOCAL"=>$config["ENDERECO_LOCAL"].$config["CSSLINKCADASTRO"].$Route."-mobile.css"]);
+               
+                $Content = $Render->Render($Content,["JSCADASTROIP"=>$config["ENDERECO_IP"].$config["CADASTROJS"].".js"]);
+                $Content = $Render->Render($Content,["JSFNCADASTROIP"=>$config["ENDERECO_IP"].$config["FNCADASTROJS"].".js"]);
+                $Content = $Render->Render($Content,["JSCONFIG"=>$config["ENDERECO_IP"].$config["CADASTROCONFIGJS"].".js"]);
                 http_response_code(200);
                 return $Content;
             }
@@ -36,6 +39,12 @@ class ResponseCadastro{
                return $Content;
             }
         }
+    }
+
+    // Inicializador do arquivo ini de configurações
+    private static function ini_file(){
+        $config = new Config();
+        return $config->Config_App();
     }
 }
 

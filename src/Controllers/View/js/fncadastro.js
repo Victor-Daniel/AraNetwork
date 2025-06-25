@@ -99,7 +99,7 @@ function Validar_Campos(){
                                     "Content-Type": "application/json"
                                 },
                                 body: DadosJson
-                            }).then(response=>response.text()).then(data=>{                               
+                            }).then(response=>response.json()).then(data=>{                               
                                 console.log("Response Server",data);
                             }).catch(error=>{
                                 console.log("Erro ao enviar os Dados!", error);

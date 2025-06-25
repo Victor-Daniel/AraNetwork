@@ -6,14 +6,18 @@ use PDOException;
 use App\API\Request\SafeData\PasswordGenerator;
 use Dotenv\Util\Regex;
 
-class CadastrarDados{
+define('localfile_conection','/etc/mysql-conection/data-config.ini');
 
+class CadastrarDados{
 
     public function Cadastrar_Usuario_CPF($Array){
         
         try{
-
-            $conn = new PDO("mysql:host=mysql-AraNetwork;port=3306;dbname=ara_db","root","HwWin10A.1");
+             $config = parse_ini_file(localfile_conection,true);
+             
+            $strconection = "mysql:host=" . $config['database']['MYSQL_HOST'] . ";port=". $config['database']['MYSQL_PORT'] . ";dbname=" . $config['database']['MYSQL_DATABASE'];
+            
+            $conn = new PDO($strconection,$config['database']['MYSQL_USER_ROOT'], $config['database']['MYSQL_ROOT_PASSWORD']);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
 
@@ -30,10 +34,10 @@ class CadastrarDados{
 
             $sql = "INSERT INTO usuarios_pf (
             nome, usuario, passwd, email, cpf, rg, celular, data_nasc, endereco,
-            bairro, complemento, numero, cidade, uf, cep, data_atualizacao_reg
+            bairro, complemento, numero, cidade, uf, cep
             ) VALUES (
             :nome, :usuario, :passwd, :email, :cpf, :rg, :celular, :data_nasc, :endereco,
-            :bairro, :complemento, :numero, :cidade, :uf, :cep, :data_atualizacao
+            :bairro, :complemento, :numero, :cidade, :uf, :cep
             );";
 
             $comando = $conn->prepare($sql);
@@ -53,7 +57,6 @@ class CadastrarDados{
                 ':cidade' => $Array["cidade"],
                 ':uf' => $Array["uf"],
                 ':cep' => $Array["cep"],
-                ':data_atualizacao' => $dataAgora
             ]);
 
            return 205;
@@ -74,7 +77,11 @@ class CadastrarDados{
         $info = array("code"=>0,"msg"=>"");
 
         try{
-            $conn = new PDO("mysql:host={$_ENV[MYSQL_HOST]};port={$_ENV[MYSQL_PORT]};dbname={$_ENV[MYSQL_DATABASE]}","{$_ENV[MYSQL_USER_ROOT]}","{$_ENV[MYSQL_ROOT_PASSWORD]}");
+            $config = parse_ini_file(localfile_conection,true);
+
+            $strconection = "mysql:host=" . $config['database']['MYSQL_HOST'] . ";port=" . $config['database']['MYSQL_PORT'] . ";dbname=" . $config['database']['MYSQL_DATABASE'];
+            $conn = new PDO($strconection,$config['database']['MYSQL_USER_ROOT'], $config['database']['MYSQL_ROOT_PASSWORD']);
+
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $sql = "SELECT cpf FROM usuarios_pf WHERE cpf = :cpf";
@@ -87,7 +94,6 @@ class CadastrarDados{
             if(is_array($result)){
                 if($result["cpf"]==$CPF){
                     $info["code"]=200;
-                    $info["teste"] = $_ENV["MYSQL_HOST"];
                     return $info;
                 }
             }

@@ -20,6 +20,8 @@ class RequestLogin{
             $current_route = $routes[$current_route];
         }
         else{
+            //var_dump(array_key_exists($current_route, $routes));
+            //var_dump($current_route);
             $current_route = "/server-error";
         }
         return $current_route;

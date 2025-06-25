@@ -48,14 +48,25 @@
             
             $Cadastrar = new CadastrarDados();
 
-            $result = $Cadastrar->Verificar_Cadastro_PF($dados["cpf"]);
+            //echo json_encode($Cadastrar->Verificar_Cadastro_PF($dados["cpf"]));
+
+           $result = $Cadastrar->Verificar_Cadastro_PF($dados["cpf"]);
             if($result["code"]==404){
-                
-                echo json_encode([
-                    "code"=>$Cadastrar->Cadastrar_Usuario_CPF($dados),
+                $result = $Cadastrar->Cadastrar_Usuario_CPF($dados);
+                if($result==205){
+                    echo json_encode([
+                    "code"=>$result,
                     "msg"=>"Cadastro realizado com Sucesso!",
                     "next_link"=>""
                 ]);
+                }
+                else{
+                    echo json_encode([
+                    "code"=>500,
+                    "msg"=>$Cadastrar->Cadastrar_Usuario_CPF($dados),
+                    "next_link"=>""
+                ]);
+                }
             }
             elseif($result["code"]==200){
                 echo json_encode([
@@ -64,7 +75,7 @@
                     "next_link"=>""
                 ]);
             }
-               
+            
         }
         if(array_key_exists("cnpj",$dados)){
 
@@ -87,7 +98,6 @@
             
 
         }
-
 
     }     
     else{
